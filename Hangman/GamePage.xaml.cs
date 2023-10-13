@@ -1,4 +1,6 @@
 using Hangman.Models;
+using System.ComponentModel.Design;
+using System.Linq;
 
 namespace Hangman;
 
@@ -18,8 +20,17 @@ public partial class GamePage : ContentPage
         GameType = gameType;
         BindingContext = this;
 
+        //Added by Robert, Loads word list before game starts
+        //InitializeGame();
+    }
+    
+    private async void InitializeGame()
+    {
+        await HangmanWords.WordsLoaded;
         CreateNewChallenge();
     }
+
+  
 
     /* Requires testing */
     private void CreateNewChallenge()
@@ -63,7 +74,7 @@ public partial class GamePage : ContentPage
 	 * Based on the users selected difficulty, find a word suitable
 	 * and return it
 	 */
-    public string SelectWord(string gameType)
+    private string SelectWord(string gameType)
     {
         Random random = new Random();
 
@@ -96,37 +107,32 @@ public partial class GamePage : ContentPage
         var answer = AnswerEntry.Text[0];
         var isCorrect = false;
 
-		isCorrect = CheckLetterInWord(Word, answer);
+        isCorrect = CheckLetterInWord(Word, answer);
 
         if (isCorrect == false)
         {
             remainingAttempts--;
         }
         UpdateDisplay(isCorrect, Word, answer, remainingAttempts);
-		
-		AnswerEntry.Text = "";
-		AnswerEntry.Focus();
+
+        AnswerEntry.Text = "";
+        AnswerEntry.Focus();
 
         if (remainingAttempts == 0)
-		{
-			GameOver(Word);
-		}
+        {
+            GameOver(Word);
+        }
 
     }
 
-    /*!
-	 * Uses the GameType to select a word from the list by its length:
-	 * Easy : length < 7
-	 * Medium : 7 <= length < 10
-	 * Hard : length >= 10
-	 */
-    public bool CheckLetterInWord(string word, char answer)
+
+    private bool CheckLetterInWord(string word, char answer)
     {
         if (word.ToLower().Contains(Char.ToLower(answer))) 
-		{
+		    {
             return true;
         }
-		return false;		
+        return false;
     }
 
 
@@ -139,6 +145,7 @@ public partial class GamePage : ContentPage
 
         // stub to show the program is using the correct letter against the word returned in SelectWord function
         if (remainingAttempts > 0 && isCorrect)
+
 		{
 			//await DisplayAlert("Good", letter.ToString() + " is in word", "OK");	
 			
@@ -149,6 +156,7 @@ public partial class GamePage : ContentPage
 		{
 			RemainingAttemptsLabel.Text = $"Remaining Attempts: {remainingAttempts}";
             //await DisplayAlert("No", letter.ToString() + " is not in the word", "OK");
+
         }
     }
 
@@ -177,6 +185,7 @@ public partial class GamePage : ContentPage
                 await Navigation.PushAsync(new MainPage());
             }
         }  
+
     }
 
     private void OnBackToMenu(object sender, EventArgs e)
