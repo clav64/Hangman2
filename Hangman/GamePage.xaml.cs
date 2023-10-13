@@ -140,15 +140,15 @@ public partial class GamePage : ContentPage
         // stub to show the program is using the correct letter against the word returned in SelectWord function
         if (remainingAttempts > 0 && isCorrect)
 		{
-			await DisplayAlert("Good", letter.ToString() + " is in word", "OK");	
+			//await DisplayAlert("Good", letter.ToString() + " is in word", "OK");	
 			
-			/// this needs to update the display
+			// this needs to update the display
 		}
 
 		else
 		{
 			RemainingAttemptsLabel.Text = $"Remaining Attempts: {remainingAttempts}";
-            await DisplayAlert("No", letter.ToString() + " is not in the word", "OK");
+            //await DisplayAlert("No", letter.ToString() + " is not in the word", "OK");
         }
     }
 
@@ -158,12 +158,12 @@ public partial class GamePage : ContentPage
 	 * Also displays the options to return to the menu, exit or play again
 	 */
 
-    async private void GameOver(string word)
+    async public void GameOver(string word)
     {
         bool response = await DisplayAlert("Sorry", "The correct answer was " + word + ". Play again?", "Yes", "No");
         if(response)
         {
-            Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new MainPage());
         }
         else
         {
@@ -174,7 +174,7 @@ public partial class GamePage : ContentPage
             }
             else
             {
-                Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new MainPage());
             }
         }  
     }
