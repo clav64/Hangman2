@@ -8,19 +8,18 @@ namespace UnitTestProject
         [Fact]
         public void Test1()
         {
-            GamePage gamepage = new GamePage("hello");
+            string word =  "testing";
 
-            string word = "hello";
-            
-            char testFalse = 'a';
-            char testTrue = 'e';
-
-            var resultFalse = gamepage.CheckLetterInWord(word, testFalse);
-            var resultTrue = gamepage.CheckLetterInWord(word, testTrue);
+            GamePage gamepage = new GamePage(word);
+            char trueTestLetter = 't';
+            char falseTestLetter = 'z';
+            var resultFalse = gamepage.CheckLetterInWord(word, falseTestLetter);
+            var resultTrue = gamepage.CheckLetterInWord(word, trueTestLetter);
 
             Assert.True(resultTrue);
             Assert.False(resultFalse);
 
         }
+
     }
 }
