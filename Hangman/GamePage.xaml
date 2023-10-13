@@ -79,7 +79,7 @@
                     Text="Go"
                     Clicked="OnAttemptSubmitted"
                     />
-                
+
             </Grid>
 
         </VerticalStackLayout>
