@@ -122,7 +122,7 @@ public partial class GamePage : ContentPage
 	 */
     public bool CheckLetterInWord(string word, char answer)
     {
-        if (word.ToLower().Contains(answer)) 
+        if (word.ToLower().Contains(Char.ToLower(answer))) 
 		{
             return true;
         }
@@ -158,11 +158,25 @@ public partial class GamePage : ContentPage
 	 * Also displays the options to return to the menu, exit or play again
 	 */
 
-    private void GameOver(string word)
-	{
-        //DisplayAlert("Sorry", "The correct answer was " + word, "OK");
-        CreateNewChallenge();
-
+    async private void GameOver(string word)
+    {
+        bool response = await DisplayAlert("Sorry", "The correct answer was " + word + ". Play again?", "Yes", "No");
+        if(response)
+        {
+            Navigation.PushAsync(new MainPage());
+        }
+        else
+        {
+            bool check = await DisplayAlert("Exit?", "Are you sure you want to exit?", "Yes", "No");
+            if (check)
+            {
+                Application.Current.Quit();
+            }
+            else
+            {
+                Navigation.PushAsync(new MainPage());
+            }
+        }  
     }
 
     private void OnBackToMenu(object sender, EventArgs e)
