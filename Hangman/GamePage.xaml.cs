@@ -1,6 +1,5 @@
 using Hangman.Models;
-using System.ComponentModel.Design;
-using System.Linq;
+
 
 namespace Hangman;
 
@@ -20,17 +19,9 @@ public partial class GamePage : ContentPage
         GameType = gameType;
         BindingContext = this;
 
-        //Added by Robert, Loads word list before game starts
-        //InitializeGame();
-    }
-    
-    private async void InitializeGame()
-    {
-        await HangmanWords.WordsLoaded;
         CreateNewChallenge();
     }
 
-  
 
     /* Requires testing */
     private void CreateNewChallenge()
