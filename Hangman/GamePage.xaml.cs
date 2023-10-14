@@ -117,7 +117,7 @@ public partial class GamePage : ContentPage
     }
 
 
-    private bool CheckLetterInWord(string word, char answer)
+    public bool CheckLetterInWord(string word, char answer)
     {
         if (word.ToLower().Contains(Char.ToLower(answer))) 
 		    {
@@ -176,7 +176,6 @@ public partial class GamePage : ContentPage
                 await Navigation.PushAsync(new MainPage());
             }
         }  
-
     }
 
     private void OnBackToMenu(object sender, EventArgs e)

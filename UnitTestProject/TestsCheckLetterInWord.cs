@@ -35,12 +35,13 @@ namespace UnitTestProject
         }
     }
 
-    public class AnotherTest
+    public class TestsForGameOver
     {
         [Fact]
-        public void Test()
+        public void TestingGameOver()
         {
-
+            GamePage gamepage = new("Easy");
+            
         }
     }
 }
