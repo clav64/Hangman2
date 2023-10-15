@@ -5,18 +5,29 @@ namespace Hangman;
 
 public partial class GamePage : ContentPage
 {
+    int remainingAttempts = 7;
+
     public string GameType { get; set; }
     List<char> LettersTried { get; set; }
     char CurrentLetterGuess { get; set; }
     public string Word { get; set; }
-
-    int remainingAttempts = 7;
-
-    public GamePage()
+    public int RemaningAttempts
     {
-
+        get { return remainingAttempts; }
+        set { remainingAttempts = value; }
     }
-    
+
+    /*
+     * Getter/setter used for xUnit tests and fake user input on AnswerEntry GamePage Entry item
+     */
+    public string AnswerEntryText
+    {
+        get { return AnswerEntryText; }
+        set { AnswerEntry.Text = value; }
+    }
+
+    public GamePage(){}
+
     public GamePage(string gameType)
     {
         InitializeComponent();
@@ -98,7 +109,7 @@ public partial class GamePage : ContentPage
 
 
     /* Requires testing */
-    private void OnAttemptSubmitted(object sender, EventArgs e)
+    public void OnAttemptSubmitted(object sender, EventArgs e)
     {
         var answer = AnswerEntry.Text[0];
         var isCorrect = false;
