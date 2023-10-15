@@ -39,7 +39,7 @@ public partial class GamePage : ContentPage
 	 * Resets the display to the initial image and
 	 * the appropriate number of visible labels
 	 */
-    private void ResetDisplay(string word)
+    public void ResetDisplay(string word)
     {
 
         // Reset hangman image and update UI for hidden word and remaining attempts.
