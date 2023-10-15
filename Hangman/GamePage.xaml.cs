@@ -12,6 +12,11 @@ public partial class GamePage : ContentPage
 
     int remainingAttempts = 7;
 
+    public GamePage()
+    {
+
+    }
+    
     public GamePage(string gameType)
     {
         InitializeComponent();
@@ -24,7 +29,7 @@ public partial class GamePage : ContentPage
 
 
     /* Requires testing */
-    private void CreateNewChallenge()
+    public void CreateNewChallenge()
     {
         Word = SelectWord(GameType);
         ResetDisplay(Word);
@@ -65,7 +70,7 @@ public partial class GamePage : ContentPage
 	 * Based on the users selected difficulty, find a word suitable
 	 * and return it
 	 */
-    private string SelectWord(string gameType)
+   public string SelectWord(string gameType)
     {
         Random random = new Random();
 
@@ -117,7 +122,7 @@ public partial class GamePage : ContentPage
     }
 
 
-    private bool CheckLetterInWord(string word, char answer)
+    public bool CheckLetterInWord(string word, char answer)
     {
         if (word.ToLower().Contains(Char.ToLower(answer))) 
 		    {
