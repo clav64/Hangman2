@@ -1,2 +1,2 @@
-# Orange Team
+# Team Orange 
 Repository for Hangman game
